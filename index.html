@@ -592,7 +592,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
 .barra-baixa { background: var(--vermelho); }
 
 /* ===== FUNIL ===== */
-.funil-container { display: flex; flex-direction: column; gap: 4px; align-items: center; }
+.funil-container { display: flex; flex-direction: column; gap: 4px; align-items: center; width: 100%; }
 .funil-etapa {
   border-radius: 6px;
   padding: 12px 20px;
@@ -605,7 +605,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
 .funil-seta { font-size: 20px; color: #bbb; text-align: center; }
 .funil-gargalo { background: var(--vermelho) !important; position: relative; }
 .funil-gargalo::after {
-  content: "GARGALO CRITICO";
+  content: "GARGALO CRÍTICO";
   position: absolute;
   right: -130px;
   top: 50%;
@@ -4253,47 +4253,49 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
   </div>
 
   <h3 style="font-size:14px;color:var(--azul-principal);margin-bottom:20px;">Funil de Jornada dos Empreendedores (SEBRAE RJ - 714 CPFs)</h3>
-  <div style="display:flex;gap:40px;align-items:flex-start;">
-    <div class="funil-container" style="min-width:320px;">
-      <div class="funil-etapa" style="background:var(--azul-principal);width:100%;max-width:320px;">
-        <div class="f-titulo">Inicio</div>
-        <div class="f-val">329</div>
-        <div class="f-pct">49% dos empreendedores</div>
+  <div style="width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;">
+  <div style="display:flex;gap:40px;align-items:flex-start;min-width:640px;">
+    <div class="funil-container" style="min-width:280px;flex-shrink:0;">
+      <div class="funil-etapa" style="background:var(--azul-principal);width:100%;max-width:280px;">
+        <div class="f-titulo">Início</div>
+        <div class="f-val">331</div>
+        <div class="f-pct">48,4% dos empreendedores</div>
       </div>
       <div class="funil-seta">&#9660;</div>
-      <div class="funil-etapa" style="background:#5d8aa8;width:90%;max-width:290px;">
-        <div class="f-titulo">Estruturacao</div>
+      <div class="funil-etapa" style="background:#5d8aa8;width:90%;max-width:252px;">
+        <div class="f-titulo">Estruturação</div>
         <div class="f-val">250</div>
-        <div class="f-pct">37% - queda linear esperada</div>
+        <div class="f-pct">36,5% - queda linear esperada</div>
       </div>
       <div class="funil-seta" style="color:var(--vermelho);font-size:24px;">&#9660;</div>
-      <div class="funil-etapa funil-gargalo" style="width:40%;max-width:130px;">
+      <div class="funil-etapa funil-gargalo" style="width:40%;max-width:112px;">
         <div class="f-titulo">Desenvolvimento</div>
         <div class="f-val">30</div>
-        <div class="f-pct">4% - colapso de 90%</div>
+        <div class="f-pct">4,4% - colapso de 90%</div>
       </div>
       <div class="funil-seta">&#9660;</div>
-      <div class="funil-etapa" style="background:var(--verde);width:55%;max-width:175px;">
+      <div class="funil-etapa" style="background:var(--verde);width:55%;max-width:154px;">
         <div class="f-titulo">Acomp. Intensivo</div>
         <div class="f-val">62</div>
-        <div class="f-pct">9% - alta conversao pos-gargalo</div>
+        <div class="f-pct">9,1% - alta conversão pós-gargalo</div>
       </div>
     </div>
-    <div style="flex:1;">
+    <div style="flex:1;min-width:320px;">
       <div class="alerta alerta-risco">
         <div class="alerta-icon">!</div>
-        <div><strong>Gargalo Critico - Transicao Estruturacao-Desenvolvimento</strong>O programa perde 90% dos empreendedores ao sair da etapa de Estruturacao. O fluxo de Inicio para Estruturacao e linear (49% - 37%), mas o colapso de Estruturacao para Desenvolvimento (37% - 4%) representa uma perda de 220 empreendedores que nunca chegam ao estágio de impacto mensuravel. O programa não tem problema de captação, nem de saida - o problema e o estágio 2.</div>
+        <div><strong>Gargalo Crítico - Transição Estruturação para Desenvolvimento</strong>O programa perde 90% dos empreendedores ao sair da etapa de Estruturação. O fluxo de Início para Estruturação é linear (48,4% para 36,5%), mas o colapso de Estruturação para Desenvolvimento (36,5% para 4,4%) representa uma perda de 220 empreendedores que nunca chegam ao estágio de impacto mensurável. O programa não tem problema de captação, nem de saída: o problema é o estágio 2.</div>
       </div>
       <div class="alerta alerta-info" style="margin-top:12px;">
         <div class="alerta-icon">i</div>
-        <div><strong>Oportunidade de Retencao</strong>Uma vez superado o gargalo de Estruturacao, a taxa de conversao para Acompanhamento Intensivo e de 67% (30 para 62 considerando a jornada). O programa e eficaz para quem permanece - o desafio e fazer mais empreendedores chegarem la. Redesenhar a Estruturacao com metas de 90 dias pode resolver o gargalo.</div>
+        <div><strong>Oportunidade de Retenção</strong>Uma vez superado o gargalo de Estruturação, a taxa de conversão para Acompanhamento Intensivo é de 67% (30 para 62 considerando a jornada). O programa é eficaz para quem permanece: o desafio é fazer mais empreendedores chegarem lá. Redesenhar a Estruturação com metas de 90 dias pode resolver o gargalo.</div>
       </div>
     </div>
   </div>
+  </div>
 
-  <div style="margin-top:28px;background:#f8fafc;border-radius:10px;padding:20px;border-left:4px solid var(--azul-secundário);">
+  <div style="margin-top:28px;background:#f8fafc;border-radius:10px;padding:20px;border-left:4px solid var(--azul-secundario);">
     <h4 style="font-size:13px;color:var(--azul-principal);margin-bottom:10px;">Leitura Estratégica Territorial</h4>
-    <p style="font-size:12.5px;color:#444;line-height:1.8;">A diferenca de 2,9x na intensidade de atendimento entre Mare (5,8 cons/emp) e Jacarezinho (2,0 cons/emp) não e demográfica: o genero dos dois grupos e similar (70,4% feminino na Mare vs 62% em Jacarezinho). Trata-se de uma decisão operacional não documentada. O que e mais revelador: a Mare concentra 50 dos 62 empreendedores de Acompanhamento Intensivo (80,6%) com apenas 202 CPFs, enquanto Jacarezinho com 512 CPFs tem apenas 12. Isso sugere que o modelo Mare não e so mais intensivo - e estruturalmente mais eficaz na progressão de jornada. Um piloto de 50 empreendedores em Jacarezinho replicando o modelo Mare seria o primeiro experimento controlado do sistema.</p>
+    <p style="font-size:12.5px;color:#444;line-height:1.8;">A diferença de 2,9x na intensidade de atendimento entre Maré (5,8 cons/emp) e Jacarezinho (2,0 cons/emp) não é demográfica: o gênero dos dois grupos é similar (70,4% feminino na Maré vs 62% em Jacarezinho). Trata-se de uma decisão operacional não documentada. O que é mais revelador: a Maré concentra 50 dos 62 empreendedores de Acompanhamento Intensivo (80,6%) com apenas 202 CPFs, enquanto Jacarezinho com 512 CPFs tem apenas 12. Isso sugere que o modelo Maré não é só mais intensivo: é estruturalmente mais eficaz na progressão de jornada. Um piloto de 50 empreendedores em Jacarezinho replicando o modelo Maré seria o primeiro experimento controlado do sistema.</p>
   </div>
 </section>
 

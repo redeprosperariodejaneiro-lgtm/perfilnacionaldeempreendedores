@@ -517,7 +517,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
 .aba-conteudo { display: none; padding: 28px; }
 .aba-conteudo.ativo { display: block; }
 
-/* ===== PLANO AÇÃO ===== */
+/* ===== PLANO ACAO ===== */
 .filtros-acao {
   display: flex;
   gap: 10px;
@@ -768,12 +768,366 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
   .grid-insights { grid-template-columns: repeat(2,1fr); }
   .grid-charts-3 { grid-template-columns: 1fr 1fr; }
 }
+
+/* ===== MOBILE RESPONSIVO — max-width: 768px ===== */
+@media (max-width: 768px) {
+
+  /* --- NAV LATERAL: oculta por padrão, abre via toggle --- */
+  #nav-lateral {
+    transform: translateX(-100%);
+    transition: transform 0.28s cubic-bezier(.4,0,.2,1);
+    z-index: 1100;
+    width: 260px;
+  }
+  #nav-lateral.aberto {
+    transform: translateX(0);
+  }
+  #overlay-nav {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1050;
+  }
+  #overlay-nav.ativo { display: block; }
+
+  /* --- BOTÃO HAMBURGER --- */
+  #btn-menu {
+    display: flex !important;
+  }
+
+  /* --- CONTEÚDO: sem margin-left --- */
+  #conteudo {
+    margin-left: 0;
+  }
+
+  /* --- SCROLL INDICATOR: ocupa largura toda --- */
+  #scroll-indicator {
+    left: 0;
+  }
+
+  /* --- BARRA SUPERIOR MOBILE --- */
+  #barra-mobile {
+    display: flex !important;
+  }
+
+  /* --- SECOES: padding reduzido --- */
+  .secao {
+    padding: 24px 16px;
+  }
+  .secao-titulo h2 {
+    font-size: 16px;
+  }
+  .secao-titulo {
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  /* --- CABECALHO PADRAO: empilhar --- */
+  .cabecalho-padrao {
+    padding: 16px;
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+  .cabecalho-padrao .parceiros {
+    justify-content: center;
+  }
+  .cabecalho-padrao .titulo-central {
+    padding: 0;
+  }
+
+  /* --- KPI GRIDS --- */
+  .grid-kpi-4 { grid-template-columns: repeat(2,1fr); gap: 12px; }
+  .grid-kpi-3 { grid-template-columns: repeat(2,1fr); gap: 12px; }
+  .grid-kpi-2 { grid-template-columns: 1fr; gap: 12px; }
+  .card-kpi { padding: 16px 14px; }
+  .card-kpi .kpi-valor { font-size: 24px; }
+
+  /* --- INSIGHTS GRID --- */
+  .grid-insights { grid-template-columns: 1fr; }
+
+  /* --- CHARTS GRIDS --- */
+  .grid-charts-2 { grid-template-columns: 1fr; }
+  .grid-charts-3 { grid-template-columns: 1fr; }
+
+  /* --- TABELAS: scroll horizontal --- */
+  .tabela-padrao {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+  .tabela-padrao td,
+  .tabela-padrao th {
+    white-space: normal;
+    min-width: 120px;
+  }
+
+  /* --- TABELAS INLINE (sem classe) --- */
+  table:not(.tabela-padrao) {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* --- COMPARATIVO GRID --- */
+  .comparativo-grid {
+    grid-template-columns: 1fr;
+  }
+  .comp-separador {
+    flex-direction: row;
+    padding: 8px 0;
+  }
+
+  /* --- MATRIZ --- */
+  .matriz {
+    grid-template-columns: 1fr;
+  }
+
+  /* --- FUNIL GARGALO: remover label absoluto --- */
+  .funil-gargalo::after {
+    display: none;
+  }
+
+  /* --- SENTENÇA CENTRAL --- */
+  .sentenca-central {
+    padding: 20px 18px;
+  }
+  .sentenca-central p {
+    font-size: 13px;
+  }
+
+  /* --- NARRATIVA --- */
+  .narrativa-secao {
+    padding: 18px;
+  }
+  .narrativa-secao p {
+    font-size: 12.5px;
+  }
+
+  /* --- RODAPÉ --- */
+  #rodape {
+    padding: 18px 16px;
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+  #rodape .rodape-texto {
+    text-align: center;
+  }
+
+  /* --- CAPA --- */
+  .capa-titulo {
+    font-size: 22px !important;
+  }
+  .capa-kpis {
+    grid-template-columns: repeat(2,1fr) !important;
+  }
+
+  /* --- GRIDS INLINE com style --- */
+  /* Todos os display:grid com colunas fixas viram 1 coluna via classes auxiliares */
+}
+
+/* --- 480px: telas muito pequenas --- */
+@media (max-width: 480px) {
+  .grid-kpi-4,
+  .grid-kpi-3 {
+    grid-template-columns: 1fr;
+  }
+  .capa-kpis {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .secao {
+    padding: 18px 12px;
+  }
+  .card-kpi .kpi-valor {
+    font-size: 22px;
+  }
+  .sentenca-central p {
+    font-size: 12.5px;
+  }
+  .acao-card {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+/* --- BARRA MOBILE E HAMBURGER: visíveis apenas no mobile --- */
+#barra-mobile {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 52px;
+  background: var(--azul-principal);
+  border-bottom: 3px solid var(--amarelo);
+  z-index: 1090;
+  align-items: center;
+  padding: 0 16px;
+  gap: 12px;
+}
+#btn-menu {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  flex-direction: column;
+  gap: 5px;
+  flex-shrink: 0;
+}
+#btn-menu span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+#barra-mobile .titulo-barra {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.5px;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#barra-mobile .logo-barra {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--amarelo);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Espaço extra no topo do conteúdo no mobile para a barra fixa */
+@media (max-width: 768px) {
+  #conteudo {
+    padding-top: 52px;
+  }
+  /* Scroll horizontal seguro para overflow inline */
+  [style*="overflow-x:auto"],
+  [style*="overflow-x: auto"] {
+    -webkit-overflow-scrolling: touch;
+  }
+  /* Grids inline com 3+ colunas: colapsar via CSS customization */
+  /* Os grids inline usam style="display:grid;grid-template-columns:..." */
+  /* Forçar via regra geral para containers com padding lateral grande */
+  .secao > div[style*="padding:40px 48px"],
+  .secao > div[style*="padding: 40px 48px"] {
+    padding: 20px 14px !important;
+  }
+
+  /* Forçar grids inline para coluna única no mobile */
+  /* Cobre os casos style="display:grid;grid-template-columns:repeat(X,1fr)" */
+  *[style*="grid-template-columns:repeat(2"] { grid-template-columns: 1fr !important; }
+  *[style*="grid-template-columns:repeat(3"] { grid-template-columns: 1fr !important; }
+  *[style*="grid-template-columns:repeat(4"] { grid-template-columns: 1fr !important; }
+  *[style*="grid-template-columns:repeat(5"] { grid-template-columns: 1fr !important; }
+  *[style*="grid-template-columns:repeat(6"] { grid-template-columns: 1fr !important; }
+  *[style*="grid-template-columns: repeat(2"] { grid-template-columns: 1fr !important; }
+  *[style*="grid-template-columns: repeat(3"] { grid-template-columns: 1fr !important; }
+  *[style*="grid-template-columns: repeat(4"] { grid-template-columns: 1fr !important; }
+  *[style*="grid-template-columns: repeat(5"] { grid-template-columns: 1fr !important; }
+  *[style*="grid-template-columns: repeat(6"] { grid-template-columns: 1fr !important; }
+
+  /* Grids de 2 colunas inline (1fr 1fr, 2fr 1fr, etc.) — manter como 1fr */
+  *[style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
+  *[style*="grid-template-columns:2fr 1fr"] { grid-template-columns: 1fr !important; }
+  *[style*="grid-template-columns:1fr 2fr"] { grid-template-columns: 1fr !important; }
+  *[style*="grid-template-columns:3fr 2fr"] { grid-template-columns: 1fr !important; }
+  *[style*="grid-template-columns:2fr 2fr"] { grid-template-columns: 1fr !important; }
+  *[style*="grid-template-columns:1fr auto 1fr"] { grid-template-columns: 1fr !important; }
+  *[style*="grid-template-columns: 1fr 1fr"] { grid-template-columns: 1fr !important; }
+  *[style*="grid-template-columns: 2fr 1fr"] { grid-template-columns: 1fr !important; }
+  *[style*="grid-template-columns: 1fr 2fr"] { grid-template-columns: 1fr !important; }
+  *[style*="grid-template-columns: 3fr 2fr"] { grid-template-columns: 1fr !important; }
+  *[style*="grid-template-columns: 1fr auto 1fr"] { grid-template-columns: 1fr !important; }
+  *[style*="grid-template-columns:auto 1fr"] { grid-template-columns: 1fr !important; }
+  *[style*="grid-template-columns: auto 1fr"] { grid-template-columns: 1fr !important; }
+
+  /* Grids mistos (colunas fixas em px) — overflow scroll */
+  *[style*="grid-template-columns:60px"] { overflow-x: auto; }
+  *[style*="grid-template-columns: 60px"] { overflow-x: auto; }
+  *[style*="grid-template-columns:auto 200px"] { grid-template-columns: 1fr !important; }
+  *[style*="grid-template-columns: auto 200px"] { grid-template-columns: 1fr !important; }
+
+  /* Paddings inline grandes — reduzir */
+  *[style*="padding:40px 48px"] { padding: 20px 14px !important; }
+  *[style*="padding: 40px 48px"] { padding: 20px 14px !important; }
+  *[style*="padding:28px 36px"] { padding: 18px 14px !important; }
+  *[style*="padding: 28px 36px"] { padding: 18px 14px !important; }
+  *[style*="padding:28px 32px"] { padding: 18px 14px !important; }
+  *[style*="padding: 28px 32px"] { padding: 18px 14px !important; }
+  *[style*="padding:32px 36px"] { padding: 18px 14px !important; }
+  *[style*="padding: 32px 36px"] { padding: 18px 14px !important; }
+
+  /* Fontes grandes inline — reduzir */
+  *[style*="font-size:30px"] { font-size: 22px !important; }
+  *[style*="font-size:28px"] { font-size: 20px !important; }
+  *[style*="font-size:26px"] { font-size: 18px !important; }
+  *[style*="font-size:24px"] { font-size: 17px !important; }
+  *[style*="font-size:22px"] { font-size: 16px !important; }
+  *[style*="font-size:20px"] { font-size: 15px !important; }
+  *[style*="font-size:19px"] { font-size: 14px !important; }
+  *[style*="font-size: 30px"] { font-size: 22px !important; }
+  *[style*="font-size: 28px"] { font-size: 20px !important; }
+  *[style*="font-size: 26px"] { font-size: 18px !important; }
+  *[style*="font-size: 24px"] { font-size: 17px !important; }
+  *[style*="font-size: 22px"] { font-size: 16px !important; }
+
+  /* Imagens inline — max-width seguro */
+  img { max-width: 100%; height: auto; }
+
+  /* Canvas Chart.js — responsivo */
+  canvas { max-width: 100% !important; }
+
+  /* Links muito pequenos — área de toque mínima */
+  #nav-lateral ul li a {
+    padding: 11px 16px;
+    font-size: 12px;
+  }
+
+  /* Tabela de ranking de clusters (display:grid com 8 colunas fixas) */
+  *[style*="grid-template-columns:60px 200px"] {
+    grid-template-columns: 1fr !important;
+  }
+  *[style*="grid-template-columns: 60px 200px"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Linha de fluxo horizontal — manter scroll */
+  *[style*="overflow-x:auto"] {
+    max-width: 100%;
+  }
+
+  /* Overflow em seções com tabelas inline */
+  section { overflow-x: hidden; }
+}
 </style>
 </head>
 <body>
 
 <!-- INDICADOR DE SCROLL -->
 <div id="scroll-indicator"></div>
+
+<!-- BARRA MOBILE (visível apenas em telas ≤768px) -->
+<div id="barra-mobile">
+  <button id="btn-menu" aria-label="Abrir menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <span class="titulo-barra">Prospera Brasil · Relatório Executivo</span>
+  <span class="logo-barra">2026</span>
+</div>
+
+<!-- OVERLAY DO MENU MOBILE -->
+<div id="overlay-nav"></div>
 
 <!-- NAVEGACAO LATERAL -->
 <nav id="nav-lateral">
@@ -797,17 +1151,17 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
     <li><a href="#sec05"><span class="num">05</span>Análise Territorial</a></li>
     <li><a href="#sec06"><span class="num">06</span>Qualidade de Dados</a></li>
     <li><a href="#sec07"><span class="num">07</span>Gargalos Sistemicos</a></li>
-    <li><a href="#sec08"><span class="num">08</span>Avaliação Estratégica</a></li>
+    <li><a href="#sec08"><span class="num">08</span>Avaliacao Estratégica</a></li>
     <li><a href="#sec09"><span class="num">09</span>Esforco Humano</a></li>
     <li><a href="#sec10"><span class="num">10</span>KPIs Nacionais</a></li>
     <li><a href="#sec11"><span class="num">11</span>Insights Estrategicos</a></li>
     <li><a href="#sec12"><span class="num">12</span>Dashboard Interativo</a></li>
-    <li><a href="#sec13"><span class="num">13</span>Plano de Ação</a></li>
+    <li><a href="#sec13"><span class="num">13</span>Plano de Acao</a></li>
     <li><a href="#sec14"><span class="num">14</span>Narrativa Executiva</a></li>
     <li><a href="#sec15"><span class="num">15</span>Proximos Passos</a></li>
-    <li><a href="#sec16"><span class="num">16</span>DiagTerr - Integração Completa</a></li>
+    <li><a href="#sec16"><span class="num">16</span>DiagTerr - Integracao Completa</a></li>
     <li><a href="#sec17"><span class="num">17</span>Mapeamento Economia Criativa</a></li>
-    <li><a href="#sec18"><span class="num">18</span>Sistema de Inteligência - Versão Final</a></li>
+    <li><a href="#sec18"><span class="num">18</span>Sistema de Inteligencia - Versao Final</a></li>
   </ul>
   <div class="nav-footer">Marco 2026 · Convênio 078/24</div>
 </nav>
@@ -3573,7 +3927,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
       <canvas id="chartEstados" height="220"></canvas>
     </div>
     <div class="chart-box">
-      <h4>Composição da Base por Fonte</h4>
+      <h4>Composicao da Base por Fonte</h4>
       <canvas id="chartFontes" height="220"></canvas>
     </div>
   </div>
@@ -3668,7 +4022,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
 
   <div class="alerta alerta-atenção">
     <div class="alerta-icon">!</div>
-    <div><strong>Correção Metodológica Obrigatória</strong>A taxa de informalidade desta fonte e 54,4% (pergunta direta ao empreendedor). O dado de 87% do SEBRAE RJ usa proxy via codigo de ocupacao - metodologia diferente. Os dois números NÃO devem ser comparados diretamente. Cada fonte tem metodologia própria e deve ser reportada separadamente.</div>
+    <div><strong>Correcao Metodologica Obrigatoria</strong>A taxa de informalidade desta fonte e 54,4% (pergunta direta ao empreendedor). O dado de 87% do SEBRAE RJ usa proxy via codigo de ocupacao - metodologia diferente. Os dois números NÃO devem ser comparados diretamente. Cada fonte tem metodologia própria e deve ser reportada separadamente.</div>
   </div>
 
   <div class="grid-charts-3" style="margin-bottom:24px;">
@@ -3692,7 +4046,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
       <canvas id="chartEscolaridade" height="200"></canvas>
     </div>
     <div class="chart-box">
-      <h4>Formalização (n=1.552)</h4>
+      <h4>Formalizacao (n=1.552)</h4>
       <canvas id="chartFormalizacao" height="200"></canvas>
     </div>
     <div class="chart-box">
@@ -3792,7 +4146,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
         <td>Acesso a crédito</td>
       </tr>
       <tr>
-        <td><strong>MA</strong> - Maranhão</td>
+        <td><strong>MA</strong> - Maranhao</td>
         <td>602</td>
         <td>91%</td>
         <td>31%</td>
@@ -3828,7 +4182,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
 
   <div class="alerta alerta-risco" style="margin-top:20px;">
     <div class="alerta-icon">!</div>
-    <div><strong>Invisibilidade Racial no RJ</strong>O Complexo da Maré e Jacarezinho - os dois territórios com mais dados de atendimento (2.109 consultorias, 2.095 horas) - não tem nenhum registro de Cor/Raca. Qualquer análise de equidade racial para o RJ e estruturalmente impossivel com os dados atuais. A inclusao de dois campos (Cor/Raca + DOB) no proximo formulário resolve esse problema integralmente.</div>
+    <div><strong>Invisibilidade Racial no RJ</strong>O Complexo da Mare e Jacarezinho - os dois territorios com mais dados de atendimento (2.109 consultorias, 2.095 horas) - não tem nenhum registro de Cor/Raca. Qualquer análise de equidade racial para o RJ e estruturalmente impossivel com os dados atuais. A inclusao de dois campos (Cor/Raca + DOB) no proximo formulário resolve esse problema integralmente.</div>
   </div>
 </section>
 
@@ -3846,7 +4200,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
       <div class="comp-row"><span class="cr-label">Consultorias/empreendedor</span><span class="cr-val">5,8</span></div>
       <div class="comp-row"><span class="cr-label">Horas/empreendedor</span><span class="cr-val">6,3h</span></div>
       <div class="comp-row"><span class="cr-label">Acompanhamento Intensivo</span><span class="cr-val">17%</span></div>
-      <div class="comp-row"><span class="cr-label">Gênero feminino</span><span class="cr-val">63%</span></div>
+      <div class="comp-row"><span class="cr-label">Genero feminino</span><span class="cr-val">63%</span></div>
       <div class="comp-row"><span class="cr-label">Linhas brutas CRM</span><span class="cr-val">1.180</span></div>
       <div class="comp-destaque">Fator multiplicador: 1.180 linhas / 202 CPFs = 5,8x - sem consolidacao, contador inflado em 5,8x</div>
     </div>
@@ -3860,9 +4214,9 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
       <div class="comp-row"><span class="cr-label">Consultorias/empreendedor</span><span class="cr-val">2,2</span></div>
       <div class="comp-row"><span class="cr-label">Horas/empreendedor</span><span class="cr-val">1,7h</span></div>
       <div class="comp-row"><span class="cr-label">Acompanhamento Intensivo</span><span class="cr-val">5%</span></div>
-      <div class="comp-row"><span class="cr-label">Gênero feminino</span><span class="cr-val">62%</span></div>
+      <div class="comp-row"><span class="cr-label">Genero feminino</span><span class="cr-val">62%</span></div>
       <div class="comp-row"><span class="cr-label">Linhas brutas CRM</span><span class="cr-val">1.094</span></div>
-      <div class="comp-destaque" style="background:#fff8e1;color:#e65100;">Oportunidade: 512 CPFs x 5,8 (modelo Maré) = +1.946 consultorias sem nova captação</div>
+      <div class="comp-destaque" style="background:#fff8e1;color:#e65100;">Oportunidade: 512 CPFs x 5,8 (modelo Mare) = +1.946 consultorias sem nova captação</div>
     </div>
   </div>
 
@@ -3901,17 +4255,17 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
       <div class="funil-etapa" style="background:var(--verde);width:55%;max-width:175px;">
         <div class="f-titulo">Acomp. Intensivo</div>
         <div class="f-val">62</div>
-        <div class="f-pct">9% - alta conversão pos-gargalo</div>
+        <div class="f-pct">9% - alta conversao pos-gargalo</div>
       </div>
     </div>
     <div style="flex:1;">
       <div class="alerta alerta-risco">
         <div class="alerta-icon">!</div>
-        <div><strong>Gargalo Critico - Transição Estruturação-Desenvolvimento</strong>O programa perde 90% dos empreendedores ao sair da etapa de Estruturacao. O fluxo de Inicio para Estruturacao e linear (49% - 37%), mas o colapso de Estruturacao para Desenvolvimento (37% - 4%) representa uma perda de 220 empreendedores que nunca chegam ao estágio de impacto mensuravel. O programa não tem problema de captação, nem de saida - o problema e o estágio 2.</div>
+        <div><strong>Gargalo Critico - Transicao Estruturacao-Desenvolvimento</strong>O programa perde 90% dos empreendedores ao sair da etapa de Estruturacao. O fluxo de Inicio para Estruturacao e linear (49% - 37%), mas o colapso de Estruturacao para Desenvolvimento (37% - 4%) representa uma perda de 220 empreendedores que nunca chegam ao estágio de impacto mensuravel. O programa não tem problema de captação, nem de saida - o problema e o estágio 2.</div>
       </div>
       <div class="alerta alerta-info" style="margin-top:12px;">
         <div class="alerta-icon">i</div>
-        <div><strong>Oportunidade de Retenção</strong>Uma vez superado o gargalo de Estruturação, a taxa de conversão para Acompanhamento Intensivo e de 67% (30 para 62 considerando a jornada). O programa e eficaz para quem permanece - o desafio e fazer mais empreendedores chegarem la. Redesenhar a Estruturacao com metas de 90 dias pode resolver o gargalo.</div>
+        <div><strong>Oportunidade de Retencao</strong>Uma vez superado o gargalo de Estruturacao, a taxa de conversao para Acompanhamento Intensivo e de 67% (30 para 62 considerando a jornada). O programa e eficaz para quem permanece - o desafio e fazer mais empreendedores chegarem la. Redesenhar a Estruturacao com metas de 90 dias pode resolver o gargalo.</div>
       </div>
     </div>
   </div>
@@ -5427,9 +5781,9 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
         <td>83,1% não faz - oportunidade de programa de marketing</td>
       </tr>
       <tr style="background:#e0f7fb;">
-        <td><strong>Tipo_Publicação</strong></td>
+        <td><strong>Tipo_Publicacao</strong></td>
         <td>Texto aberto</td>
-        <td>Tipo de conteúdo postado nas redes sociais</td>
+        <td>Tipo de conteudo postado nas redes sociais</td>
         <td>Diag. Territorial SOMENTE</td>
         <td><span class="badge-pill pill-teal">NOVO EXCLUSIVO</span></td>
         <td>Fotos, Videos, Reels, Texto, etc.</td>
@@ -5479,7 +5833,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
 
   <!-- Leitura estratégica desta integração -->
   <div style="background:#f8fafc;border-radius:10px;padding:22px 26px;border-left:4px solid var(--azul-secundário);">
-    <h4 style="font-size:13px;color:var(--azul-principal);margin-bottom:12px;">Leitura Estratégica da Integração DiagnósticoTerritorial</h4>
+    <h4 style="font-size:13px;color:var(--azul-principal);margin-bottom:12px;">Leitura Estratégica da Integracao DiagnosticoTerritorial</h4>
     <p style="font-size:12.5px;color:#444;line-height:1.8;margin-bottom:10px;">
       Está integração representa o avanço mais significativo na qualidade do sistema de dados Prospera Brasil desde sua concepção. Em um único arquivo, o DiagnosticoTerritorial Jacarezinho (a) corrige a caixa preta demográfica do RJ fornecendo perfil completo de 1.006 empreendedores, (b) adiciona a única dimensao de marketing digital disponível no sistema, e (c) introduz 13 novos campos que ampliam a capacidade analítica do modelo nacional.
     </p>
@@ -5557,7 +5911,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
   <!-- Graficos linha 3 -->
   <div class="grid-charts-2" style="margin-bottom:28px;">
     <div class="chart-box">
-      <h4>Distribuição por Estado (n=765)</h4>
+      <h4>Distribuicao por Estado (n=765)</h4>
       <canvas id="ec-estados" height="210"></canvas>
     </div>
     <div class="chart-box">
@@ -5570,7 +5924,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
   <h3 style="font-size:15px;color:var(--azul-principal);margin-bottom:16px;">Segmentos Criativos - Distribuicao Completa por Tipo de Negócio</h3>
   <table class="tabela-padrao" style="margin-bottom:28px;">
     <thead>
-      <tr><th>Segmento Criativo</th><th>Empreendedores</th><th>% da Base EC</th><th>Característica</th></tr>
+      <tr><th>Segmento Criativo</th><th>Empreendedores</th><th>% da Base EC</th><th>Caracteristica</th></tr>
     </thead>
     <tbody>
       <tr><td><strong>Gastronomia</strong></td><td>240</td><td>31,4%</td><td>Maior segmento - cozinhas comunitarias, deliveries, marmitas, doces artesanais</td></tr>
@@ -5584,8 +5938,8 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
       <tr><td><strong>Editorial</strong></td><td>6</td><td>0,8%</td><td>Escrita criativa, publicação independente, zines, podcasts</td></tr>
       <tr><td><strong>Jogos / Animacao</strong></td><td>5</td><td>0,7%</td><td>Desenvolvimento de jogos, animacao, storytelling digital</td></tr>
       <tr><td><strong>Publicidade / Conteudo</strong></td><td>3</td><td>0,4%</td><td>Gestão de redes, criação de conteúdo, marketing de periferia</td></tr>
-      <tr><td><strong>Artes Cênicas</strong></td><td>3</td><td>0,4%</td><td>Teatro, danca, circo, performance cultural</td></tr>
-      <tr><td><strong>Outros / Multiplos segmentos</strong></td><td>78</td><td>10,2%</td><td>186 combinações identificadas - empreendedores com atuacao em mais de um segmento criativo</td></tr>
+      <tr><td><strong>Artes Cenicas</strong></td><td>3</td><td>0,4%</td><td>Teatro, danca, circo, performance cultural</td></tr>
+      <tr><td><strong>Outros / Multiplos segmentos</strong></td><td>78</td><td>10,2%</td><td>186 combinacoes identificadas - empreendedores com atuacao em mais de um segmento criativo</td></tr>
     </tbody>
   </table>
 
@@ -5611,7 +5965,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
         <td><span class="badge-pill pill-alto">+17,7pp vs Pesquisa Prospera</span></td>
       </tr>
       <tr>
-        <td><strong>Escolaridade - Médio Completo</strong></td>
+        <td><strong>Escolaridade - Medio Completo</strong></td>
         <td>57,6%</td>
         <td>53,4%</td>
         <td>36,0%</td>
@@ -5641,9 +5995,9 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
       <tr>
         <td><strong>Segmento #1</strong></td>
         <td>Gastronomia (31,4%)</td>
-        <td>Alimentação/Beb. (35,5%)</td>
-        <td>Alimentação/Gastron. (24,3%)</td>
-        <td><span class="badge-pill pill-alto">Convergência nas 3 bases</span></td>
+        <td>Alimentacao/Beb. (35,5%)</td>
+        <td>Alimentacao/Gastron. (24,3%)</td>
+        <td><span class="badge-pill pill-alto">Convergencia nas 3 bases</span></td>
       </tr>
       <tr>
         <td><strong>CPF disponível</strong></td>
@@ -5711,7 +6065,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
   </div>
 </section>
 
-<!-- ========== SECAO 18 - SISTEMA DE INTELIGÊNCIA EMPREENDEDORA ========== -->
+<!-- ========== SECAO 18 - SISTEMA DE INTELIGENCIA EMPREENDEDORA ========== -->
 <section id="sec18" class="secao">
   <div class="cabecalho-padrao">
     <div class="logo-bloco"><img src="https://lh3.googleusercontent.com/d/1x5sNkC9vd7CI78y0xdkWvgoadxPEMcIf=w800" alt="Prospera Rio" onerror="this.style.display='none'"><div class="tag">Programa Nacional</div></div>
@@ -5722,7 +6076,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
   <div class="secao-titulo">
     <span class="secao-num">18</span>
     <div>
-      <h2>Sistema de Inteligência Empreendedora - Versão Final Integrada</h2>
+      <h2>Sistema de Inteligencia Empreendedora - Versao Final Integrada</h2>
       <div class="subtitulo">Planilha mestra com 13 abas - versão v3 final - a fonte mais completa e atualizada do sistema</div>
     </div>
   </div>
@@ -5770,7 +6124,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
   </div>
 
   <!-- 6 Abas da Planilha -->
-  <h3 style="font-size:15px;color:var(--azul-principal);margin-bottom:16px;">6 Abas da Planilha - Descrição e Conteúdo</h3>
+  <h3 style="font-size:15px;color:var(--azul-principal);margin-bottom:16px;">6 Abas da Planilha - Descricao e Conteudo</h3>
   <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:28px;">
     <div style="background:#fff;border-radius:10px;padding:18px;box-shadow:0 2px 8px rgba(0,0,0,0.07);border-top:4px solid var(--azul-principal);">
       <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:12px;color:var(--azul-principal);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.5px;">Aba 1 - Painel Nacional Final</div>
@@ -5786,11 +6140,11 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
     </div>
     <div style="background:#fff;border-radius:10px;padding:18px;box-shadow:0 2px 8px rgba(0,0,0,0.07);border-top:4px solid var(--amarelo);">
       <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:12px;color:#b8860b;margin-bottom:8px;text-transform:uppercase;letter-spacing:0.5px;">Aba 4 - Perfil Demográfico Nacional</div>
-      <p style="font-size:12px;color:#555;line-height:1.7;">Distribuição por sexo, faixa etária, cor/raca e escolaridade comparados entre fontes e estados. Revela o perfil real de cada território e as lacunas de completude. Base para argumentacao de equidade.</p>
+      <p style="font-size:12px;color:#555;line-height:1.7;">Distribuicao por sexo, faixa etaria, cor/raca e escolaridade comparados entre fontes e estados. Revela o perfil real de cada território e as lacunas de completude. Base para argumentacao de equidade.</p>
     </div>
     <div style="background:#fff;border-radius:10px;padding:18px;box-shadow:0 2px 8px rgba(0,0,0,0.07);border-top:4px solid var(--roxo);">
       <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:12px;color:var(--roxo);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.5px;">Aba 5 - Dicionario de Dados</div>
-      <p style="font-size:12px;color:#555;line-height:1.7;">61 variáveis documentadas com tipo, descrição, disponibilidade por fonte e notas criticas. Classifica cada campo como Nucleo, Expandido, SEBRAE Exclusivo ou Novo. Referencia obrigatoria para qualquer análise futura.</p>
+      <p style="font-size:12px;color:#555;line-height:1.7;">61 variaveis documentadas com tipo, descricao, disponibilidade por fonte e notas criticas. Classifica cada campo como Nucleo, Expandido, SEBRAE Exclusivo ou Novo. Referencia obrigatoria para qualquer análise futura.</p>
     </div>
     <div style="background:#fff;border-radius:10px;padding:18px;box-shadow:0 2px 8px rgba(0,0,0,0.07);border-top:4px solid var(--vermelho);">
       <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:12px;color:var(--vermelho);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.5px;">Aba 6 - Nota Estratégica Final</div>
@@ -5802,7 +6156,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
       <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:12px;color:var(--vermelho);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.5px;">Aba 6 - Nota Estratégica Final</div>
       <p style="font-size:12px;color:#555;line-height:1.7;">Estado atual do sistema, capacidades analíticas habilitadas, 4 lacunas criticas com ação recomendada, e proximo passo de integração com a base nacional SEBRAE por CPF. Documento de gestão do sistema de dados.</p>
     </div>
-    <!-- 7 ABAS EXCLUSIVAS DA VERSÃO v3 -->
+    <!-- 7 ABAS EXCLUSIVAS DA VERSAO v3 -->
     <div style="background:#fff;border-radius:10px;padding:18px;box-shadow:0 2px 8px rgba(0,0,0,0.07);border-top:4px solid var(--laranja);">
       <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:12px;color:var(--laranja);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.5px;">Aba 7 - Perfil dos Negócios <span style="background:var(--amarelo);color:var(--azul-principal);font-size:9px;padding:2px 6px;border-radius:10px;margin-left:4px;">NOVO v3</span></div>
       <p style="font-size:12px;color:#555;line-height:1.7;">Tipo de negócio, formalização, faturamento, clientela e localizacao desagregados por estado (GO, MA, RS). Revela disparidade critica: RS com 81,3% formal vs GO com apenas 10,2% formal - o mesmo programa operando em territorios com contexto juridico radicalmente diferente.</p>
@@ -5825,7 +6179,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
     </div>
     <div style="background:#fff;border-radius:10px;padding:18px;box-shadow:0 2px 8px rgba(0,0,0,0.07);border-top:4px solid var(--verde);">
       <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:12px;color:var(--verde);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.5px;">Aba 12 - Dicionario Sem Prospera Rio <span style="background:var(--amarelo);color:var(--azul-principal);font-size:9px;padding:2px 6px;border-radius:10px;margin-left:4px;">NOVO v3</span></div>
-      <p style="font-size:12px;color:#555;line-height:1.7;">Versão do dicionário de dados excluindo a Base Prospera Rio - útil para análises que requerem dados de negócio completos. Documenta variaveis da Pesquisa Prospera e Economia Criativa com seus valores possíveis e notas de padronização.</p>
+      <p style="font-size:12px;color:#555;line-height:1.7;">Versao do dicionario de dados excluindo a Base Prospera Rio - útil para análises que requerem dados de negócio completos. Documenta variaveis da Pesquisa Prospera e Economia Criativa com seus valores possíveis e notas de padronização.</p>
     </div>
     <div style="background:#fff;border-radius:10px;padding:18px;box-shadow:0 2px 8px rgba(0,0,0,0.07);border-top:4px solid var(--amarelo);">
       <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:12px;color:#b8860b;margin-bottom:8px;text-transform:uppercase;letter-spacing:0.5px;">Aba 13 - Comparativo Integrado <span style="background:var(--amarelo);color:var(--azul-principal);font-size:9px;padding:2px 6px;border-radius:10px;margin-left:4px;">NOVO v3</span></div>
@@ -5833,17 +6187,17 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
     </div>
   </div>
 
-  <!-- BLOCO EXCLUSIVO: 7 NOVAS ABAS DA VERSÂO v3 -->
+  <!-- BLOCO EXCLUSIVO: 7 NOVAS ABAS DA VERSAO v3 -->
   <div style="background:var(--azul-principal);border-radius:10px;padding:14px 20px;margin:28px 0 20px;display:flex;align-items:center;gap:12px;">
     <span style="background:var(--amarelo);color:var(--azul-principal);font-family:'Montserrat',sans-serif;font-weight:800;font-size:11px;padding:5px 14px;border-radius:20px;white-space:nowrap;letter-spacing:0.5px;">EXCLUSIVO v3</span>
-    <h3 style="color:#fff;font-size:15px;margin:0;">Dados das 7 Novas Abas - Analises Inéditas da Versão Final</h3>
+    <h3 style="color:#fff;font-size:15px;margin:0;">Dados das 7 Novas Abas - Analises Ineditas da Versao Final</h3>
   </div>
 
   <!-- ABA 8: DESAFIOS E NECESSIDADES - NOVA HIERARQUIA -->
   <h3 style="font-size:14px;color:var(--azul-principal);margin-bottom:14px;">Aba 8 - Desafios, Necessidades e Planos - Ranking Nacional v3</h3>
   <div class="alerta alerta-risco" style="margin-bottom:16px;">
     <div class="alerta-icon">!</div>
-    <div><strong>Correção Importante - Versão v3</strong>A versão v3 da planilha final revelou nova hierarquia de desafios e necessidades com metodologia de multipla escolha aplicada sistematicamente. O desafio #1 nacional e Falta de capital de giro (53,8%), não "Dificuldade para conseguir emprestimo" como em análises anteriores. A necessidade #1 e Capacitação em gestão (70,5%), deslocando "Acesso a crédito" para o 4o lugar. Esses dados sao mais precisos por cobrirem toda a base com instrumento padronizado.</div>
+    <div><strong>Correcao Importante - Versao v3</strong>A versão v3 da planilha final revelou nova hierarquia de desafios e necessidades com metodologia de multipla escolha aplicada sistematicamente. O desafio #1 nacional e Falta de capital de giro (53,8%), não "Dificuldade para conseguir emprestimo" como em análises anteriores. A necessidade #1 e Capacitação em gestão (70,5%), deslocando "Acesso a crédito" para o 4o lugar. Esses dados sao mais precisos por cobrirem toda a base com instrumento padronizado.</div>
   </div>
   <div class="grid-charts-3" style="margin-bottom:24px;">
     <div class="chart-box">
@@ -5860,7 +6214,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
     </div>
   </div>
 
-  <!-- ABA 7: PERFIL DOS NEGÓCIOS POR ESTADO -->
+  <!-- ABA 7: PERFIL DOS NEGOCIOS POR ESTADO -->
   <h3 style="font-size:14px;color:var(--azul-principal);margin-bottom:14px;">Aba 7 - Perfil dos Negócios por Estado (Pesquisa Prospera)</h3>
   <div class="alerta alerta-info" style="margin-bottom:16px;">
     <div class="alerta-icon">i</div>
@@ -5868,7 +6222,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
   </div>
   <div class="grid-charts-2" style="margin-bottom:24px;">
     <div class="chart-box">
-      <h4>Formalização por Estado - Pesquisa Prospera (%)</h4>
+      <h4>Formalizacao por Estado - Pesquisa Prospera (%)</h4>
       <canvas id="v3-formalizacao-estado" height="220"></canvas>
     </div>
     <div class="chart-box">
@@ -5887,7 +6241,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
     </div>
   </div>
 
-  <!-- ABA 9: PERFIL DEMOGRÁFICO COMPLETO POR ESTADO -->
+  <!-- ABA 9: PERFIL DEMOGRAFICO COMPLETO POR ESTADO -->
   <h3 style="font-size:14px;color:var(--azul-principal);margin-bottom:14px;">Aba 9 - Perfil Demográfico Completo por Estado</h3>
   <div class="grid-charts-3" style="margin-bottom:24px;">
     <div class="chart-box">
@@ -5899,7 +6253,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
       <canvas id="v3-bolsa-estado" height="220"></canvas>
     </div>
     <div class="chart-box">
-      <h4>Mãe Solo por Estado - % Sim</h4>
+      <h4>Mae Solo por Estado - % Sim</h4>
       <canvas id="v3-mae-estado" height="220"></canvas>
     </div>
   </div>
@@ -5908,7 +6262,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
   <h4 style="font-size:13px;color:var(--azul-principal);margin-bottom:12px;">Resumo Demográfico por Estado - Dados Completos</h4>
   <table class="tabela-padrao" style="margin-bottom:28px;">
     <thead>
-      <tr><th>Estado</th><th>Registros</th><th>% Feminino</th><th>Faixa Etária Modal</th><th>Bolsa Familia</th><th>Mae Solo</th><th>Escolaridade Modal</th><th>Formalizacao</th></tr>
+      <tr><th>Estado</th><th>Registros</th><th>% Feminino</th><th>Faixa Etaria Modal</th><th>Bolsa Familia</th><th>Mae Solo</th><th>Escolaridade Modal</th><th>Formalizacao</th></tr>
     </thead>
     <tbody>
       <tr>
@@ -5919,10 +6273,10 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
         <td style="color:var(--verde);font-weight:700;">81,3% formal</td>
       </tr>
       <tr>
-        <td><strong>MA</strong> - Maranhão</td><td>602</td>
+        <td><strong>MA</strong> - Maranhao</td><td>602</td>
         <td>46,5%</td><td>35-44 anos (22,9%)</td>
         <td>24,4%</td><td>39,0%</td>
-        <td>Médio Completo (59,3%)</td>
+        <td>Medio Completo (59,3%)</td>
         <td style="color:var(--vermelho);font-weight:700;">79,6% informal</td>
       </tr>
       <tr>
@@ -5931,7 +6285,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
         <td>18-24 anos (30,6%)</td>
         <td style="color:var(--vermelho);font-weight:700;">35,2%</td>
         <td style="color:var(--vermelho);font-weight:700;">41,2%</td>
-        <td>Médio Incompleto (28,5%)</td>
+        <td>Medio Incompleto (28,5%)</td>
         <td style="color:var(--vermelho);font-weight:700;">88,5% informal</td>
       </tr>
       <tr style="background:#e8f5e9;">
@@ -5967,19 +6321,19 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
       <tr><td>#5</td><td><strong>Audiovisual</strong></td><td>33</td><td>4,3%</td><td>Video, fotografia, produção para redes sociais</td></tr>
       <tr><td>#6</td><td><strong>Musica</strong></td><td>29</td><td>3,8%</td><td>Producao musical, aulas, eventos</td></tr>
       <tr><td>#7</td><td><strong>Publicidade / Conteudo</strong></td><td>29</td><td>3,8%</td><td>Gestão de redes, criação de conteúdo</td></tr>
-      <tr><td>#8</td><td><strong>Patrimônio / Exposicoes</strong></td><td>18</td><td>2,4%</td><td>Memorias, museologia comunitaria</td></tr>
+      <tr><td>#8</td><td><strong>Patrimonio / Exposicoes</strong></td><td>18</td><td>2,4%</td><td>Memorias, museologia comunitaria</td></tr>
       <tr><td>#9</td><td><strong>Tecnologia Criativa</strong></td><td>17</td><td>2,2%</td><td>Apps, games, conteudo digital</td></tr>
       <tr><td>#10</td><td><strong>Editorial</strong></td><td>16</td><td>2,1%</td><td>Escrita, publicação independente, zines</td></tr>
-      <tr><td>#11</td><td><strong>Artes Cênicas</strong></td><td>13</td><td>1,7%</td><td>Teatro, danca, circo, performance</td></tr>
+      <tr><td>#11</td><td><strong>Artes Cenicas</strong></td><td>13</td><td>1,7%</td><td>Teatro, danca, circo, performance</td></tr>
       <tr><td>#12</td><td><strong>Beleza (criativa)</strong></td><td>9</td><td>1,2%</td><td>Maquiagem artistica, nail art com estética própria</td></tr>
       <tr><td>#13</td><td><strong>Barbearia</strong></td><td>7</td><td>0,9%</td><td>Barbearia com identidade cultural periferica</td></tr>
-      <tr><td>#14</td><td><strong>Jogos / Animação</strong></td><td>6</td><td>0,8%</td><td>Games, animacao, storytelling</td></tr>
+      <tr><td>#14</td><td><strong>Jogos / Animacao</strong></td><td>6</td><td>0,8%</td><td>Games, animacao, storytelling</td></tr>
       <tr><td>#15</td><td><strong>Vendas</strong></td><td>6</td><td>0,8%</td><td>Vendas diretas e representacao comercial criativa</td></tr>
     </tbody>
   </table>
 
   <!-- ABA 11: BASE PROSPERA RIO -->
-  <h3 style="font-size:14px;color:var(--azul-principal);margin-bottom:14px;">Aba 11 - Base Prospera Rio - Distribuição Territorial (n=693)</h3>
+  <h3 style="font-size:14px;color:var(--azul-principal);margin-bottom:14px;">Aba 11 - Base Prospera Rio - Distribuicao Territorial (n=693)</h3>
   <div class="grid-charts-2" style="margin-bottom:24px;">
     <div class="chart-box">
       <h4>Distribuicao por Território - Base Prospera Rio</h4>
@@ -5991,7 +6345,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
         <thead><tr><th>Bairro/Território</th><th>Registros</th><th>%</th></tr></thead>
         <tbody>
           <tr><td><strong>Jacarezinho</strong></td><td>460</td><td style="color:var(--verde);font-weight:700;">66,4%</td></tr>
-          <tr><td><strong>Complexo da Maré</strong></td><td>199</td><td>28,7%</td></tr>
+          <tr><td><strong>Complexo da Mare</strong></td><td>199</td><td>28,7%</td></tr>
           <tr><td>Jacare</td><td>5</td><td>0,7%</td></tr>
           <tr><td>Sampaio</td><td>4</td><td>0,6%</td></tr>
           <tr><td>Engenho Novo</td><td>3</td><td>0,4%</td></tr>
@@ -6048,21 +6402,21 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
     </div>
   </div>
 
-  <!-- Tabela comparativa Maré vs Jaca atualizada -->
+  <!-- Tabela comparativa Mare vs Jaca atualizada -->
   <h3 style="font-size:15px;color:var(--azul-principal);margin-bottom:16px;">Comparativo Real Mare vs Jacarezinho - Versao Final</h3>
   <table class="tabela-padrao" style="margin-bottom:28px;">
     <thead>
-      <tr><th>Indicador</th><th>Complexo da Maré</th><th>Jacarezinho</th><th>Total RJ</th><th>Diferencial</th></tr>
+      <tr><th>Indicador</th><th>Complexo da Mare</th><th>Jacarezinho</th><th>Total RJ</th><th>Diferencial</th></tr>
     </thead>
     <tbody>
       <tr><td><strong>CPFs Unicos SEBRAE</strong></td><td>202</td><td>512</td><td>714</td><td><span class="badge-pill pill-medio">Jaca 2,5x maior em volume</span></td></tr>
       <tr><td><strong>CPFs Unicos no CRM</strong></td><td>202</td><td>469</td><td>671</td><td><span class="badge-pill pill-atenção">43 registros fora do CRM analítico</span></td></tr>
       <tr><td><strong>Total Consultorias</strong></td><td>1.164</td><td>945</td><td>2.109</td><td><span class="badge-pill pill-teal">Mare mais consultorias apesar de menos empreendedores</span></td></tr>
       <tr><td><strong>Total Horas</strong></td><td>1.277h</td><td>818,7h</td><td>2.095,7h</td><td>Mare 1,56x mais horas</td></tr>
-      <tr><td><strong>Média Consultorias/Empreendedor</strong></td><td style="color:var(--verde);font-weight:700;">5,8</td><td>2,0</td><td>3,1</td><td><span class="badge-pill pill-alto">Gap 2,9x - decisão operacional</span></td></tr>
-      <tr><td><strong>Média Horas/Empreendedor</strong></td><td style="color:var(--verde);font-weight:700;">6,3h</td><td>1,7h</td><td>3,1h</td><td><span class="badge-pill pill-alto">Gap 3,7x em profundidade</span></td></tr>
+      <tr><td><strong>Media Consultorias/Empreendedor</strong></td><td style="color:var(--verde);font-weight:700;">5,8</td><td>2,0</td><td>3,1</td><td><span class="badge-pill pill-alto">Gap 2,9x - decisão operacional</span></td></tr>
+      <tr><td><strong>Media Horas/Empreendedor</strong></td><td style="color:var(--verde);font-weight:700;">6,3h</td><td>1,7h</td><td>3,1h</td><td><span class="badge-pill pill-alto">Gap 3,7x em profundidade</span></td></tr>
       <tr><td><strong>Area Predominante</strong></td><td>Digital (36,2%)</td><td>Crescimento (56,7%)</td><td>Crescimento (38,5%)</td><td><span class="badge-pill pill-teal">Perfis operacionais distintos</span></td></tr>
-      <tr><td><strong>Gênero Feminino</strong></td><td>140 F / 70,4%</td><td>292 F / 62,0%</td><td>432 F / 64,4%</td><td><span class="badge-pill pill-teal">Ambos com maioria feminina</span></td></tr>
+      <tr><td><strong>Genero Feminino</strong></td><td>140 F / 70,4%</td><td>292 F / 62,0%</td><td>432 F / 64,4%</td><td><span class="badge-pill pill-teal">Ambos com maioria feminina</span></td></tr>
       <tr><td><strong>Acomp. Intensivo</strong></td><td>50 (24,8%)</td><td>12 (2,6%)</td><td>62 (9,2%)</td><td><span class="badge-pill pill-alto">Gap de 9,5x na elite da jornada</span></td></tr>
     </tbody>
   </table>
@@ -6070,7 +6424,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
   <!-- Mapa de areas por território -->
   <div class="grid-charts-2" style="margin-bottom:28px;">
     <div class="chart-box">
-      <h4>Areas de Consultoria - Complexo da Maré (1.164 consultorias)</h4>
+      <h4>Areas de Consultoria - Complexo da Mare (1.164 consultorias)</h4>
       <canvas id="si-areas-mare" height="220"></canvas>
     </div>
     <div class="chart-box">
@@ -6117,10 +6471,10 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
         <td><strong>Economia Criativa</strong><br><small>9 estados</small></td>
         <td>765</td>
         <td>-</td>
-        <td>Campo com codificação própria</td>
+        <td>Campo com codificacao própria</td>
         <td><span class="semafor-verde">Disponível (99%)</span></td>
         <td><span class="semafor-amarelo">Idade bruta</span></td>
-        <td>Ensino Médio (57,6%)</td>
+        <td>Ensino Medio (57,6%)</td>
       </tr>
       <tr style="background:#fdecea;">
         <td><strong>Base Prospera Rio</strong><br><small>RJ - cadastro</small></td>
@@ -6170,7 +6524,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
         <td><strong>Cor/Raca ausente no RJ</strong></td>
         <td>1.699 empreendedores RJ sem cor/raca. Impede análise racial do território mais populoso.</td>
         <td>SEBRAE RJ + DiagTerr + Base RJ</td>
-        <td>Incluir campo na proxima coleta (Ação A1)</td>
+        <td>Incluir campo na proxima coleta (Acao A1)</td>
         <td><span class="badge-pill pill-critico">Critica</span></td>
       </tr>
       <tr style="background:#fdecea;">
@@ -6235,7 +6589,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
   </div>
   <table class="tabela-padrao" style="margin-bottom:28px;">
     <thead>
-      <tr><th>#</th><th>Nome</th><th>Território</th><th>Consultorias</th><th>Horas</th><th>Área Digital</th><th>Área Crescimento</th><th>Jornada</th></tr>
+      <tr><th>#</th><th>Nome</th><th>Território</th><th>Consultorias</th><th>Horas</th><th>Area Digital</th><th>Area Crescimento</th><th>Jornada</th></tr>
     </thead>
     <tbody>
       <tr><td>1</td><td><strong>Dayane de Souza Lima</strong></td><td>MARE</td><td style="font-weight:800;color:var(--verde);">32</td><td>29,6h</td><td>11</td><td>6</td><td><span class="badge-pill pill-teal">Acomp. Intensivo</span></td></tr>
@@ -6296,6 +6650,31 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
 </div><!-- fim conteudo -->
 
 <script>
+// ===== MENU MOBILE =====
+(function(){
+  var btn = document.getElementById('btn-menu');
+  var nav = document.getElementById('nav-lateral');
+  var overlay = document.getElementById('overlay-nav');
+  function abrirMenu(){
+    nav.classList.add('aberto');
+    overlay.classList.add('ativo');
+    document.body.style.overflow = 'hidden';
+  }
+  function fecharMenu(){
+    nav.classList.remove('aberto');
+    overlay.classList.remove('ativo');
+    document.body.style.overflow = '';
+  }
+  if(btn) btn.addEventListener('click', function(){ nav.classList.contains('aberto') ? fecharMenu() : abrirMenu(); });
+  if(overlay) overlay.addEventListener('click', fecharMenu);
+  // Fechar ao clicar em link da nav no mobile
+  document.querySelectorAll('#nav-lateral a').forEach(function(a){
+    a.addEventListener('click', function(){
+      if(window.innerWidth <= 768) fecharMenu();
+    });
+  });
+})();
+
 // ===== SCROLL INDICATOR =====
 window.addEventListener('scroll', function(){
   var s = document.documentElement.scrollTop || document.body.scrollTop;
@@ -6894,7 +7273,7 @@ new Chart(document.getElementById('v3-bolsa-estado'), {
     scales:{y:{beginAtZero:true,max:50,ticks:{callback:function(v){return v+'%'},font:{size:10}}},x:{ticks:{font:{size:11}}}}}
 });
 
-// ABA 9 - Mãe solo por estado
+// ABA 9 - Mae solo por estado
 new Chart(document.getElementById('v3-mae-estado'), {
   type:'bar',
   data:{ labels:['GO','MA','RS'],

@@ -1108,6 +1108,27 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
   /* Overflow em seções com tabelas inline */
   section { overflow-x: hidden; }
 }
+
+/* ===== TABLE CONTAINER — SCROLL HORIZONTAL MOBILE ===== */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 0;
+}
+.table-container table,
+.table-container .tabela-padrao {
+  min-width: 560px;
+  width: 100%;
+}
+/* tabela-padrao: garantir scroll correto (remover overflow:hidden inline que trava) */
+.tabela-padrao {
+  display: table; /* sobrepõe display:block do responsive */
+}
+@media (max-width: 768px) {
+  .table-container { -webkit-overflow-scrolling: touch; }
+  .table-container table { min-width: 480px; }
+}
 </style>
 </head>
 <body>
@@ -2028,7 +2049,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
     </div>
 
     <div style="overflow-x:auto;">
-    <table style="width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(9,32,64,0.08);font-size:12px;">
+    <table style="width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:visible;box-shadow:0 2px 12px rgba(9,32,64,0.08);font-size:12px;">
       <thead>
         <tr style="background:var(--azul-principal);">
           <th style="padding:12px 14px;text-align:left;color:#fff;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap;">Cluster</th>
@@ -2789,7 +2810,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
 
     <!-- Matriz 3x3: Cluster × Investimento × Saída -->
     <div style="overflow-x:auto;margin-bottom:24px;">
-    <table style="width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 3px 16px rgba(9,32,64,0.1);font-size:12px;">
+    <table style="width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:visible;box-shadow:0 3px 16px rgba(9,32,64,0.1);font-size:12px;">
       <thead>
         <tr style="background:var(--azul-principal);">
           <th style="padding:14px 16px;text-align:left;color:var(--amarelo);font-family:'Montserrat',sans-serif;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.5px;min-width:160px;">Cluster</th>
@@ -3291,7 +3312,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
         <div style="background:var(--azul-principal);padding:14px 18px;">
           <div style="font-family:'Montserrat',sans-serif;font-size:12px;font-weight:800;color:#fff;">Mapa de Fontes por Perfil de Demanda</div>
         </div>
-        <table style="width:100%;border-collapse:collapse;font-size:12px;">
+        <div class="table-container" style="margin-bottom:0;"><table style="width:100%;border-collapse:collapse;font-size:12px;">
           <thead>
             <tr style="background:#f0f4f8;">
               <th style="padding:10px 12px;text-align:left;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;color:#7f8c8d;text-transform:uppercase;">Fonte</th>
@@ -3338,7 +3359,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
               <td style="padding:10px 12px;text-align:center;"><span style="background:#e3f2fd;color:#1565c0;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;">1–3m</span></td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
       </div>
 
       <!-- Argumento de captação -->
@@ -3933,7 +3954,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
   </div>
 
   <h3 style="margin-bottom:14px;font-size:15px;color:var(--azul-principal);">Confiabilidade por Fonte de Dados</h3>
-  <table class="tabela-padrao">
+  <div class="table-container" style="margin-bottom:0;"><table class="tabela-padrao">
     <thead>
       <tr>
         <th>Fonte</th>
@@ -3998,7 +4019,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
         <td><span class="badge-pill pill-nulo">BAIXA</span></td>
       </tr>
     </tbody>
-  </table>
+  </table></div>
 
   <div style="margin-top:20px;padding:14px 18px;background:#e0f7fb;border-radius:8px;font-size:12.5px;">
     <strong style="font-family:'Montserrat',sans-serif;font-size:11px;text-transform:uppercase;color:#006064;letter-spacing:0.5px;">Validacao da Base Mestra</strong><br>
@@ -4125,7 +4146,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
   </div>
 
   <h3 style="font-size:14px;color:var(--azul-principal);margin-bottom:16px;">Comparativo Demográfico por Estado (Pesquisa Prospera)</h3>
-  <table class="tabela-padrao">
+  <div class="table-container" style="margin-bottom:0;"><table class="tabela-padrao">
     <thead>
       <tr>
         <th>Estado</th>
@@ -4178,7 +4199,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
         <td>Dado não coletado</td>
       </tr>
     </tbody>
-  </table>
+  </table></div>
 
   <div class="alerta alerta-risco" style="margin-top:20px;">
     <div class="alerta-icon">!</div>
@@ -4284,7 +4305,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
   </div>
 
   <h3 style="font-size:14px;color:var(--azul-principal);margin-bottom:16px;">Grade de Completude por Campo e Fonte</h3>
-  <table class="tabela-padrao" style="margin-bottom:24px;">
+  <div class="table-container" style="margin-bottom:24px;"><table class="tabela-padrao" style="margin-bottom:24px;">
     <thead>
       <tr><th>Campo</th><th>Pesquisa Prospera</th><th>SEBRAE RJ</th><th>DiagTerr</th><th>Econ. Criativa</th><th>Base RJ</th><th>Impacto Decisorio</th></tr>
     </thead>
@@ -4362,7 +4383,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
         <td><span class="badge-pill pill-critico">CRITICO - impacto irrespondível</span></td>
       </tr>
     </tbody>
-  </table>
+  </table></div>
 
   <h3 style="font-size:14px;color:var(--azul-principal);margin-bottom:16px;">3 Limitacoes com Maior Impacto Decisorio</h3>
   <div class="grid-kpi grid-kpi-3">
@@ -4406,7 +4427,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
     <div><h2>Mapeamento Sistemico de Gargalos</h2><div class="subtitulo">6 etapas do ciclo de dados - da coleta a decisão</div></div>
   </div>
 
-  <table class="tabela-padrao" style="margin-bottom:28px;">
+  <div class="table-container" style="margin-bottom:28px;"><table class="tabela-padrao" style="margin-bottom:28px;">
     <thead>
       <tr><th>#</th><th>Etapa</th><th>Input</th><th>Output</th><th>Gargalo Identificado</th><th>Causa Raiz</th><th>Impacto Nacional</th></tr>
     </thead>
@@ -4466,10 +4487,10 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
         <td><span class="badge-pill pill-critico">CRITICO - impacto irrespondível</span></td>
       </tr>
     </tbody>
-  </table>
+  </table></div>
 
   <h3 style="font-size:14px;color:var(--azul-principal);margin-bottom:16px;">Top 5 Gargalos Estruturais por Impacto Nacional</h3>
-  <table class="tabela-padrao">
+  <div class="table-container" style="margin-bottom:0;"><table class="tabela-padrao">
     <thead>
       <tr><th>Rank</th><th>Gargalo</th><th>Escopo</th><th>Registros Afetados</th><th>Impacto Decisorio</th></tr>
     </thead>
@@ -4510,7 +4531,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
         <td>Identificacao do empreendedor impossivel. Nome_Completo e do pesquisador, não do empreendedor.</td>
       </tr>
     </tbody>
-  </table>
+  </table></div>
 </section>
 
 <!-- ========== SECAO 08 - AVALIACAO ESTRATEGICA ========== -->
@@ -4520,7 +4541,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
     <div><h2>Avaliacao Estratégica do Sistema</h2><div class="subtitulo">Valor real vs valor percebido para cada componente da base</div></div>
   </div>
 
-  <table class="tabela-padrao" style="margin-bottom:28px;">
+  <div class="table-container" style="margin-bottom:28px;"><table class="tabela-padrao" style="margin-bottom:28px;">
     <thead>
       <tr><th>Componente</th><th>Situacao Atual</th><th>Valor para Decisao</th><th>Nível</th></tr>
     </thead>
@@ -4568,7 +4589,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
         <td><span class="badge-pill pill-nulo">NULO</span></td>
       </tr>
     </tbody>
-  </table>
+  </table></div>
 
   <div class="sentenca-central" style="margin-bottom:24px;">
     <p>"Valor percebido: base nacional integrada de 5 mil empreendedores em 10 estados com perfil demográfico, histórico de atendimento e módulo digital. Valor real: tres sistemas separados operando no mesmo arquivo - CRM de atendimento (SEBRAE RJ) + base demográfica (Pesquisa Prospera) + cadastros de qualidade variavel. A integração foi estrutural, não analítica."</p>
@@ -4607,7 +4628,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
     <div><strong>Maior Desperdicio Identificado</strong>Registro duplicado por atendimento no SEBRAE: 82% do esforco de registro produz duplicatas removiveis automaticamente. Um script de 50 linhas resolve em segundos o que hoje consome dias de trabalho manual.</div>
   </div>
 
-  <table class="tabela-padrao" style="margin-bottom:28px;">
+  <div class="table-container" style="margin-bottom:28px;"><table class="tabela-padrao" style="margin-bottom:28px;">
     <thead>
       <tr><th>Funcao</th><th>Tarefa Atual</th><th>Complexidade</th><th>Impacto</th><th>Repeticao</th><th>Situacao</th></tr>
     </thead>
@@ -4693,7 +4714,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
         <td><span class="badge-pill pill-teal">REALOCAR (de montagem)</span></td>
       </tr>
     </tbody>
-  </table>
+  </table></div>
 
   <div class="grid-kpi grid-kpi-3">
     <div class="card-kpi verde">
@@ -4718,7 +4739,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
     <div><h2>KPIs para Decisao Nacional</h2><div class="subtitulo">Top 10 indicadores com hierarquia estratégica e nível de confiabilidade</div></div>
   </div>
 
-  <table class="tabela-padrao">
+  <div class="table-container" style="margin-bottom:0;"><table class="tabela-padrao">
     <thead>
       <tr><th>#</th><th>Indicador</th><th>Fórmula</th><th>Fonte</th><th>Resultado Atual</th><th>Uso Estratégico</th><th>Confiabilidade</th></tr>
     </thead>
@@ -4814,7 +4835,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
         <td><span class="badge-pill pill-alto">ALTA (restrito a RJ)</span></td>
       </tr>
     </tbody>
-  </table>
+  </table></div>
 </section>
 
 <!-- ========== SECAO 11 - INSIGHTS ========== -->
@@ -5407,7 +5428,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
   </div>
 
   <h3 style="font-size:14px;color:var(--azul-principal);margin:28px 0 16px;">Proximos Passos por Prioridade</h3>
-  <table class="tabela-padrao">
+  <div class="table-container" style="margin-bottom:0;"><table class="tabela-padrao">
     <thead>
       <tr><th>Prioridade</th><th>Acao</th><th>Responsavel</th><th>Prazo</th><th>Entregavel</th><th>Impacto</th></tr>
     </thead>
@@ -5477,7 +5498,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
         <td><span class="badge-pill pill-critico">Critico - longo prazo</span></td>
       </tr>
     </tbody>
-  </table>
+  </table></div>
 </section>
 
 <!-- ========== SECAO 16 - INTEGRAÇÃO DIAGNÓSTICO TERRITORIAL ========== -->
@@ -5667,7 +5688,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
 
   <!-- ABA: QUALIDADE DOS DADOS -->
   <h3 style="font-size:15px;color:var(--azul-principal);margin-bottom:16px;">Qualidade de Dados - Pos-Integracao (Aba: QUALIDADE DOS DADOS)</h3>
-  <table class="tabela-padrao" style="margin-bottom:28px;">
+  <div class="table-container" style="margin-bottom:28px;"><table class="tabela-padrao" style="margin-bottom:28px;">
     <thead>
       <tr><th>Metrica</th><th>Valor</th><th>Status</th><th>Observacao</th><th>Acao Recomendada</th></tr>
     </thead>
@@ -5690,7 +5711,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
       <tr><td>Marketing Digital</td><td><strong>Completo</strong></td><td><span class="semafor-verde">OK</span></td><td>NOVO - exclusivo nesta fonte</td><td>Expandir para demais bases</td></tr>
       <tr><td>Impacto Social (texto aberto)</td><td><strong>Completo</strong></td><td><span class="semafor-verde">OK</span></td><td>NOVO - campo único desta fonte</td><td>Expandir para demais bases</td></tr>
     </tbody>
-  </table>
+  </table></div>
 
   <!-- Comparativo de completude por base -->
   <h3 style="font-size:15px;color:var(--azul-principal);margin-bottom:16px;">Comparativo de Completude por Campo - Todas as Bases</h3>
@@ -5701,7 +5722,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
 
   <!-- ABA: MAPEAMENTO DE VARIAVEIS -->
   <h3 style="font-size:15px;color:var(--azul-principal);margin-bottom:16px;">Mapeamento de Variaveis - DiagTerr vs Modelo Nacional (Aba: MAPEAMENTO DE VARIAVEIS)</h3>
-  <table class="tabela-padrao" style="margin-bottom:28px;">
+  <div class="table-container" style="margin-bottom:28px;"><table class="tabela-padrao" style="margin-bottom:28px;">
     <thead>
       <tr><th>Variavel Original (DiagTerr)</th><th>Nome Padronizado (Modelo BR)</th><th>Status</th><th>Acao Realizada</th><th>Impacto Analítico</th></tr>
     </thead>
@@ -5715,11 +5736,11 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
       <tr><td>Ano de Inicio das Atividades</td><td>Ano_Inicio_Negocio</td><td><span class="badge-pill pill-teal">Match</span></td><td>Direto - formato AAAA</td><td>Maturidade do negócio</td></tr>
       <tr><td>Seu empreendimento e</td><td>Formalizacao</td><td><span class="badge-pill pill-medio">Equivalente</span></td><td>Mapeado: Informal / Formal (com CNPJ)</td><td>Taxa de formalização - CNPJ coletado como campo adicional</td></tr>
     </tbody>
-  </table>
+  </table></div>
 
   <!-- ABA: DICIONARIO ATUALIZADO - 13 novos campos -->
   <h3 style="font-size:15px;color:var(--azul-principal);margin-bottom:16px;">13 Novos Campos Adicionados ao Modelo (Aba: DICIONARIO ATUALIZADO)</h3>
-  <table class="tabela-padrao" style="margin-bottom:28px;">
+  <div class="table-container" style="margin-bottom:28px;"><table class="tabela-padrao" style="margin-bottom:28px;">
     <thead>
       <tr><th>Variavel</th><th>Tipo</th><th>Descricao</th><th>Disponível em</th><th>Status</th><th>Notas</th></tr>
     </thead>
@@ -5829,7 +5850,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
         <td>Complementa campo Bairro existente - habilita geolocalização</td>
       </tr>
     </tbody>
-  </table>
+  </table></div>
 
   <!-- Leitura estratégica desta integração -->
   <div style="background:#f8fafc;border-radius:10px;padding:22px 26px;border-left:4px solid var(--azul-secundário);">
@@ -5922,7 +5943,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
 
   <!-- Tabela de segmentos -->
   <h3 style="font-size:15px;color:var(--azul-principal);margin-bottom:16px;">Segmentos Criativos - Distribuicao Completa por Tipo de Negócio</h3>
-  <table class="tabela-padrao" style="margin-bottom:28px;">
+  <div class="table-container" style="margin-bottom:28px;"><table class="tabela-padrao" style="margin-bottom:28px;">
     <thead>
       <tr><th>Segmento Criativo</th><th>Empreendedores</th><th>% da Base EC</th><th>Caracteristica</th></tr>
     </thead>
@@ -5941,11 +5962,11 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
       <tr><td><strong>Artes Cenicas</strong></td><td>3</td><td>0,4%</td><td>Teatro, danca, circo, performance cultural</td></tr>
       <tr><td><strong>Outros / Multiplos segmentos</strong></td><td>78</td><td>10,2%</td><td>186 combinacoes identificadas - empreendedores com atuacao em mais de um segmento criativo</td></tr>
     </tbody>
-  </table>
+  </table></div>
 
   <!-- Comparativo com outras bases -->
   <h3 style="font-size:15px;color:var(--azul-principal);margin-bottom:16px;">Comparativo de Perfil - Economia Criativa vs Pesquisa Prospera vs DiagTerr</h3>
-  <table class="tabela-padrao" style="margin-bottom:28px;">
+  <div class="table-container" style="margin-bottom:28px;"><table class="tabela-padrao" style="margin-bottom:28px;">
     <thead>
       <tr><th>Dimensao</th><th>Economia Criativa (765)</th><th>Pesquisa Prospera (1.620)</th><th>DiagTerr Jaca (1.006)</th><th>Diferencial EC</th></tr>
     </thead>
@@ -6007,7 +6028,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
         <td><span class="badge-pill pill-critico">Gargalo comum - rastreamento impossivel</span></td>
       </tr>
     </tbody>
-  </table>
+  </table></div>
 
   <!-- Insight sobre alcance de clientela -->
   <div style="background:#fff;border-radius:12px;padding:22px 26px;box-shadow:0 2px 8px rgba(0,0,0,0.06);margin-bottom:20px;border-left:5px solid var(--verde);">
@@ -6260,7 +6281,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
 
   <!-- Tabela de perfil demográfico completo -->
   <h4 style="font-size:13px;color:var(--azul-principal);margin-bottom:12px;">Resumo Demográfico por Estado - Dados Completos</h4>
-  <table class="tabela-padrao" style="margin-bottom:28px;">
+  <div class="table-container" style="margin-bottom:28px;"><table class="tabela-padrao" style="margin-bottom:28px;">
     <thead>
       <tr><th>Estado</th><th>Registros</th><th>% Feminino</th><th>Faixa Etaria Modal</th><th>Bolsa Familia</th><th>Mae Solo</th><th>Escolaridade Modal</th><th>Formalizacao</th></tr>
     </thead>
@@ -6293,7 +6314,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
         <td colspan="7" style="font-size:12px;color:#2e7d32;font-style:italic;">75% feminino + 41% maes solo + 35% Bolsa Familia + 88,5% informal = perfil de maior vulnerabilidade do sistema. Prioridade maxima para política diferenciada.</td>
       </tr>
     </tbody>
-  </table>
+  </table></div>
 
   <!-- ABA 10: ECONOMIA CRIATIVA v3 ATUALIZADA -->
   <h3 style="font-size:14px;color:var(--azul-principal);margin-bottom:14px;">Aba 10 - Economia Criativa v3 - Segmentos Atualizados (Top 15)</h3>
@@ -6309,7 +6330,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
   </div>
 
   <!-- Tabela top 15 segmentos -->
-  <table class="tabela-padrao" style="margin-bottom:28px;">
+  <div class="table-container" style="margin-bottom:28px;"><table class="tabela-padrao" style="margin-bottom:28px;">
     <thead>
       <tr><th>Rank</th><th>Segmento Criativo</th><th>Registros</th><th>% Base EC</th><th>Perfil</th></tr>
     </thead>
@@ -6330,7 +6351,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
       <tr><td>#14</td><td><strong>Jogos / Animacao</strong></td><td>6</td><td>0,8%</td><td>Games, animacao, storytelling</td></tr>
       <tr><td>#15</td><td><strong>Vendas</strong></td><td>6</td><td>0,8%</td><td>Vendas diretas e representacao comercial criativa</td></tr>
     </tbody>
-  </table>
+  </table></div>
 
   <!-- ABA 11: BASE PROSPERA RIO -->
   <h3 style="font-size:14px;color:var(--azul-principal);margin-bottom:14px;">Aba 11 - Base Prospera Rio - Distribuicao Territorial (n=693)</h3>
@@ -6341,7 +6362,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
     </div>
     <div class="chart-box" style="display:flex;flex-direction:column;justify-content:center;gap:10px;padding:20px;">
       <div style="font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;color:var(--azul-principal);margin-bottom:8px;">Distribuicao Detalhada por Bairro</div>
-      <table class="tabela-padrao" style="font-size:11px;">
+      <div class="table-container" style="margin-bottom:0;"><table class="tabela-padrao" style="font-size:11px;">
         <thead><tr><th>Bairro/Território</th><th>Registros</th><th>%</th></tr></thead>
         <tbody>
           <tr><td><strong>Jacarezinho</strong></td><td>460</td><td style="color:var(--verde);font-weight:700;">66,4%</td></tr>
@@ -6351,13 +6372,13 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
           <tr><td>Engenho Novo</td><td>3</td><td>0,4%</td></tr>
           <tr><td>Outros bairros</td><td>22</td><td>3,2%</td></tr>
         </tbody>
-      </table>
+      </table></div>
     </div>
   </div>
 
   <!-- ABA 13: COMPARATIVO INTEGRADO -->
   <h3 style="font-size:14px;color:var(--azul-principal);margin-bottom:14px;">Aba 13 - Comparativo Integrado - Pesquisa Prospera vs Economia Criativa</h3>
-  <table class="tabela-padrao" style="margin-bottom:28px;">
+  <div class="table-container" style="margin-bottom:28px;"><table class="tabela-padrao" style="margin-bottom:28px;">
     <thead>
       <tr><th>Indicador</th><th>Pesquisa Prospera (RS/GO/MA/PI)</th><th>Economia Criativa (9 estados)</th><th>Convergencia ou Divergencia</th></tr>
     </thead>
@@ -6371,7 +6392,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
       <tr><td><strong>Dados de contato</strong></td><td>Nome, telefone, email</td><td>Anonimizado</td><td>Pesquisa Prospera mais útil para encaminhamento</td></tr>
       <tr><td><strong>Coordenadas GPS</strong></td><td style="color:var(--verde);">Sim</td><td style="color:var(--vermelho);">Não</td><td>Geolocalizacao possível apenas na Pesquisa Prospera</td></tr>
     </tbody>
-  </table>
+  </table></div>
 
   <!-- CRM Analítico Detalhado - dados reais -->
   <h3 style="font-size:15px;color:var(--azul-principal);margin-bottom:16px;">CRM Analítico SEBRAE RJ - Dados Reais Validados (Aba 3)</h3>
@@ -6404,7 +6425,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
 
   <!-- Tabela comparativa Mare vs Jaca atualizada -->
   <h3 style="font-size:15px;color:var(--azul-principal);margin-bottom:16px;">Comparativo Real Mare vs Jacarezinho - Versao Final</h3>
-  <table class="tabela-padrao" style="margin-bottom:28px;">
+  <div class="table-container" style="margin-bottom:28px;"><table class="tabela-padrao" style="margin-bottom:28px;">
     <thead>
       <tr><th>Indicador</th><th>Complexo da Mare</th><th>Jacarezinho</th><th>Total RJ</th><th>Diferencial</th></tr>
     </thead>
@@ -6419,7 +6440,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
       <tr><td><strong>Genero Feminino</strong></td><td>140 F / 70,4%</td><td>292 F / 62,0%</td><td>432 F / 64,4%</td><td><span class="badge-pill pill-teal">Ambos com maioria feminina</span></td></tr>
       <tr><td><strong>Acomp. Intensivo</strong></td><td>50 (24,8%)</td><td>12 (2,6%)</td><td>62 (9,2%)</td><td><span class="badge-pill pill-alto">Gap de 9,5x na elite da jornada</span></td></tr>
     </tbody>
-  </table>
+  </table></div>
 
   <!-- Mapa de areas por território -->
   <div class="grid-charts-2" style="margin-bottom:28px;">
@@ -6435,7 +6456,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
 
   <!-- Perfil demográfico comparativo atualizado -->
   <h3 style="font-size:15px;color:var(--azul-principal);margin-bottom:16px;">Perfil Demográfico Nacional - Comparativo por Fonte (Aba 4)</h3>
-  <table class="tabela-padrao" style="margin-bottom:28px;">
+  <div class="table-container" style="margin-bottom:28px;"><table class="tabela-padrao" style="margin-bottom:28px;">
     <thead>
       <tr><th>Fonte</th><th>Total</th><th>Feminino</th><th>% Feminino</th><th>Cor/Raca</th><th>Faixa Etaria</th><th>Escolaridade Modal</th></tr>
     </thead>
@@ -6486,7 +6507,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
         <td>Cadastro básico apenas</td>
       </tr>
     </tbody>
-  </table>
+  </table></div>
 
   <!-- 5 Capacidades Analiticas -->
   <h3 style="font-size:15px;color:var(--azul-principal);margin-bottom:16px;">5 Capacidades Analiticas Habilitadas pelo Sistema Final</h3>
@@ -6515,7 +6536,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
 
   <!-- 4 Lacunas Criticas da Nota Estratégica -->
   <h3 style="font-size:15px;color:var(--azul-principal);margin-bottom:16px;">4 Lacunas Criticas - Nota Estratégica Final (Aba 6)</h3>
-  <table class="tabela-padrao" style="margin-bottom:28px;">
+  <div class="table-container" style="margin-bottom:28px;"><table class="tabela-padrao" style="margin-bottom:28px;">
     <thead>
       <tr><th>Lacuna</th><th>Impacto</th><th>Territorios Afetados</th><th>Acao Recomendada</th><th>Urgencia</th></tr>
     </thead>
@@ -6549,7 +6570,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
         <td><span class="badge-pill pill-medio">Media</span></td>
       </tr>
     </tbody>
-  </table>
+  </table></div>
 
   <!-- Dicionário de dados - estrutura dos 61 campos -->
   <h3 style="font-size:15px;color:var(--azul-principal);margin-bottom:16px;">Arquitetura do Modelo - 61 Variaveis em 5 Categorias (Aba 5)</h3>
@@ -6587,7 +6608,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
     <div class="alerta-icon">i</div>
     <div><strong>Ativo Estratégico Subaproveitado</strong>Os empreendedores abaixo sao a elite do programa - com mais de 12 consultorias cada, eles ja demonstraram capacidade de persistencia e evolução de jornada. Sao os candidatos naturais para o programa de mentoria de pares (Acao A18) e para documentação de casos de sucesso (Acao A4).</div>
   </div>
-  <table class="tabela-padrao" style="margin-bottom:28px;">
+  <div class="table-container" style="margin-bottom:28px;"><table class="tabela-padrao" style="margin-bottom:28px;">
     <thead>
       <tr><th>#</th><th>Nome</th><th>Território</th><th>Consultorias</th><th>Horas</th><th>Area Digital</th><th>Area Crescimento</th><th>Jornada</th></tr>
     </thead>
@@ -6603,7 +6624,7 @@ h1,h2,h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
       <tr><td>9</td><td><strong>Rosemary Vargas</strong></td><td>MARE</td><td>18</td><td>17,7h</td><td>7</td><td>4</td><td><span class="badge-pill pill-teal">Acomp. Intensivo</span></td></tr>
       <tr><td>10</td><td><strong>Laudjane Silva de Araujo Nobre</strong></td><td>MARE</td><td>17</td><td>21,1h</td><td>5</td><td>6</td><td><span class="badge-pill pill-teal">Acomp. Intensivo</span></td></tr>
     </tbody>
-  </table>
+  </table></div>
 
   <!-- Composição da base por fonte -->
   <h3 style="font-size:15px;color:var(--azul-principal);margin-bottom:16px;">Composicao da Base Nacional - Versao Final (Aba 1)</h3>
